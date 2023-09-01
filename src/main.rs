@@ -1,7 +1,14 @@
+mod common;
+mod external_module;
+mod module_a;
+mod module_b;
+
 use std::sync::Arc;
 
 use async_trait::async_trait;
 use tokio::task;
+
+use crate::{common::TestCase, module_a::do_a};
 
 trait ISyncTrait {
     // async fn do_something(&self);
@@ -19,6 +26,31 @@ struct AsyncTraitWithClone;
 #[async_trait]
 impl IAsyncTrait for AsyncTraitWithClone {
     async fn do_something(&self) {
+        println!("TestCase::Success => {:?}", do_a(TestCase::Success));
+        println!(
+            "TestCase::FailFromTop1 => {:?}",
+            do_a(TestCase::FailFromTop1)
+        );
+        println!(
+            "TestCase::FailFromTop2 => {:?}",
+            do_a(TestCase::FailFromTop2)
+        );
+        println!(
+            "TestCase::FailFromMiddle1 => {:?}",
+            do_a(TestCase::FailFromMiddle1)
+        );
+        println!(
+            "TestCase::FailFromMiddle2 => {:?}",
+            do_a(TestCase::FailFromMiddle2)
+        );
+        println!(
+            "TestCase::FailFromBottom1 => {:?}",
+            do_a(TestCase::FailFromBottom1)
+        );
+        println!(
+            "TestCase::FailFromBottom2 => {:?}",
+            do_a(TestCase::FailFromBottom2)
+        );
         println!("AsyncTraitWithClone is doing something asynchronously");
     }
 }

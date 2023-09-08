@@ -1,9 +1,14 @@
-use crate::common::TestCase;
+use crate::common::{GenenricResponse, TestCase};
 
-use super::error::ExternalError;
+use super::{
+    error::ExternalError,
+    response::{to_generic_response, ExternalResponse, FailuerResponse, SuccessResponse},
+};
 
 // extenal module
-pub fn do_external(case: &TestCase) -> Result<bool, ExternalError> {
+pub fn do_external(
+    case: &TestCase,
+) -> Result<GenenricResponse<SuccessResponse, FailuerResponse>, ExternalError> {
     match case {
         // error from external module
         TestCase::FailFromExternal1 => {
@@ -17,7 +22,19 @@ pub fn do_external(case: &TestCase) -> Result<bool, ExternalError> {
                 "Failed from exteranl 2".to_string(),
             ))
         }
-        _ => (),
+        TestCase::Failure => {
+            let external_response_false = ExternalResponse { error: false };
+            println!("   ⇓  CASE: FailuerResponse");
+            return Ok(to_generic_response::<SuccessResponse, FailuerResponse>(
+                external_response_false,
+            ));
+        }
+        _ => {
+            let external_response_true = ExternalResponse { error: true };
+            println!("   ⇓  CASE: SuccessResponse");
+            return Ok(to_generic_response::<SuccessResponse, FailuerResponse>(
+                external_response_true,
+            ));
+        }
     }
-    Ok(true)
 }

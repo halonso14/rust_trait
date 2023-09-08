@@ -12,8 +12,8 @@ pub fn do_b(case: &TestCase) -> Result<bool, ErrorB> {
 
     // Do something from this module
     match case {
-        TestCase::FailFromMiddle1 => Err(ErrorB::ErrorB1("Error B1 from do_b.".to_string())),
-        TestCase::FailFromMiddle2 => Err(ErrorB::ErrorB2("Error B2 from do_b.".to_string())),
+        TestCase::FailFromB1 => Err(ErrorB::Manageable("Error B1 from do_b.".to_string())),
+        TestCase::FailFromB2 => Err(ErrorB::Manageable("Error B2 from do_b.".to_string())),
         _ => Ok(true),
     }
 }

@@ -11,8 +11,8 @@ pub fn do_a(case: TestCase) -> Result<bool, ErrorA> {
 
     // Do something from this module
     match case {
-        TestCase::FailFromTop1 => Err(ErrorA::ErrorA1(format!("Error A1 from do_a({:?}).", &case))),
-        TestCase::FailFromTop2 => Err(ErrorA::ErrorA2(format!("Error A2 from do_a({:?}).", &case))),
+        TestCase::FailFromA1 => Err(ErrorA::ErrorA1(format!("Error A1 from do_a({:?}).", &case))),
+        TestCase::FailFromA2 => Err(ErrorA::ErrorA2(format!("Error A2 from do_a({:?}).", &case))),
         _ => Ok(true),
     }
 }

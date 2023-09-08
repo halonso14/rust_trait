@@ -27,29 +27,17 @@ struct AsyncTraitWithClone;
 impl IAsyncTrait for AsyncTraitWithClone {
     async fn do_something(&self) {
         println!("TestCase::Success => {:?}", do_a(TestCase::Success));
+        println!("TestCase::FailFromA1 => {:?}", do_a(TestCase::FailFromA1));
+        println!("TestCase::FailFromA2 => {:?}", do_a(TestCase::FailFromA2));
+        println!("TestCase::FailFromB1 => {:?}", do_a(TestCase::FailFromB1));
+        println!("TestCase::FailFromB2 => {:?}", do_a(TestCase::FailFromB2));
         println!(
-            "TestCase::FailFromTop1 => {:?}",
-            do_a(TestCase::FailFromTop1)
+            "TestCase::FailFromExternal1 => {:?}",
+            do_a(TestCase::FailFromExternal1)
         );
         println!(
-            "TestCase::FailFromTop2 => {:?}",
-            do_a(TestCase::FailFromTop2)
-        );
-        println!(
-            "TestCase::FailFromMiddle1 => {:?}",
-            do_a(TestCase::FailFromMiddle1)
-        );
-        println!(
-            "TestCase::FailFromMiddle2 => {:?}",
-            do_a(TestCase::FailFromMiddle2)
-        );
-        println!(
-            "TestCase::FailFromBottom1 => {:?}",
-            do_a(TestCase::FailFromBottom1)
-        );
-        println!(
-            "TestCase::FailFromBottom2 => {:?}",
-            do_a(TestCase::FailFromBottom2)
+            "TestCase::FailFromExternal2 => {:?}",
+            do_a(TestCase::FailFromExternal2)
         );
         println!("AsyncTraitWithClone is doing something asynchronously");
     }

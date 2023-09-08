@@ -1,10 +1,10 @@
 #[derive(Debug)]
 pub enum TestCase {
     Success,
-    FailFromTop1,
-    FailFromTop2,
-    FailFromMiddle1,
-    FailFromMiddle2,
-    FailFromBottom1,
-    FailFromBottom2,
+    FailFromA1,
+    FailFromA2,
+    FailFromB1,
+    FailFromB2,
+    FailFromExternal1,
+    FailFromExternal2,
 }

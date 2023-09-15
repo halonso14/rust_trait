@@ -10,6 +10,9 @@ use tokio::task;
 
 use crate::{common::TestCase, module_a::do_a};
 
+#[cfg(feature = "derive")]
+pub use rust_trait_derive::From;
+
 trait ISyncTrait {
     // async fn do_something(&self);
     fn do_something(&self);
@@ -96,25 +99,25 @@ impl StructWithoutClone {
     }
 }
 
-#[tokio::main]
-async fn main() {
-    let async_trait_struct_with_clone = AsyncTraitWithClone;
-    let async_trait_struct_without_clone = AsyncTraitWithoutClone;
+// #[tokio::main]
+// async fn main() {
+//     let async_trait_struct_with_clone = AsyncTraitWithClone;
+//     let async_trait_struct_without_clone = AsyncTraitWithoutClone;
 
-    let arc_struct: Arc<dyn IAsyncTrait> = Arc::new(async_trait_struct_with_clone);
-    let box_struct: Box<dyn IAsyncTrait> = Box::new(async_trait_struct_without_clone);
+//     let arc_struct: Arc<dyn IAsyncTrait> = Arc::new(async_trait_struct_with_clone);
+//     let box_struct: Box<dyn IAsyncTrait> = Box::new(async_trait_struct_without_clone);
 
-    let struct_requires_clone = StructWithClone::new(arc_struct);
-    let struct_does_not_requires_clone = StructWithoutClone::new(box_struct);
+//     let struct_requires_clone = StructWithClone::new(arc_struct);
+//     let struct_does_not_requires_clone = StructWithoutClone::new(box_struct);
 
-    let task1 = task::spawn(async move {
-        struct_requires_clone.clone().perform_action().await;
-    });
+//     let task1 = task::spawn(async move {
+//         struct_requires_clone.clone().perform_action().await;
+//     });
 
-    let task2 = task::spawn(async move {
-        struct_does_not_requires_clone.perform_action().await;
-    });
+//     let task2 = task::spawn(async move {
+//         struct_does_not_requires_clone.perform_action().await;
+//     });
 
-    task1.await.unwrap();
-    task2.await.unwrap();
-}
+//     task1.await.unwrap();
+//     task2.await.unwrap();
+// }

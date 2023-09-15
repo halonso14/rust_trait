@@ -1,0 +1,15 @@
+[package]
+name = "rust_trait_derive"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = []
+
+[lib]
+proc-macro = true
+
+[dependencies]
+darling = "0.20.3"
+quote = "1.0.32"
+syn = "2.0.28"

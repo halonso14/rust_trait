@@ -20,7 +20,7 @@ pub fn derive_from(input: TokenStream) -> TokenStream {
         fn from(value: #ident) -> Self {
             FailuerResponse {
                 error: 0,
-                success: value.failure,
+                failure: value.failure,
             }
         }
     };
